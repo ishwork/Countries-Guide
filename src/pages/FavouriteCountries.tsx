@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "@mui/material/Button";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { Card, Typography } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { makeStyles } from "@mui/styles";

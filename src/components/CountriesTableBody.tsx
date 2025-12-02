@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import Typography from "@mui/material/Typography";
 import TableBody from "@mui/material/TableBody";
 import TableRow from "@mui/material/TableRow";
