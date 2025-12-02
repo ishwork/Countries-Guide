@@ -1,9 +1,9 @@
 import React from "react";
-import { makeStyles } from "@mui/styles";
+import { Typography } from "@mui/material";
 import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import { Typography } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
   styleTableHead: {
