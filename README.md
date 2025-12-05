@@ -1,6 +1,6 @@
 # Countries Information App
 
-A comprehensive React application that displays detailed information about countries around the world. Built with modern web technologies including React 18, TypeScript, Material-UI, and TanStack Query for efficient data management.
+A comprehensive React application that displays detailed information about countries around the world. Built with modern web technologies including React 19, Vite, TypeScript, Material-UI, and TanStack Query for efficient data management.
 
 ## 🌍 Features
 
@@ -23,12 +23,14 @@ A comprehensive React application that displays detailed information about count
 
 ## 🛠️ Technologies Used
 
-- **React 18.3.1** - Frontend library
-- **TypeScript** - Type-safe JavaScript
+- **React 19** - Frontend library with modern JSX transform
+- **Vite 5** - Lightning-fast build tool and dev server
+- **TypeScript 5.9** - Type-safe JavaScript
 - **TanStack Query v5** - Powerful data synchronization and caching
 - **Redux + Redux Thunk** - State management for individual country pages
 - **Material-UI (MUI) v7** - UI component library
 - **React Router v7** - Client-side routing
+- **Vitest** - Fast unit testing framework
 - **REST Countries API v3.1** - Data source
 
 ## 🏗️ Architecture
@@ -92,11 +94,11 @@ yarn install
 
 ### 3. Start the Development Server
 ```bash
-npm start
+npm run dev
 ```
 or with yarn:
 ```bash
-yarn start
+yarn dev
 ```
 
 ### 4. Open in Browser
@@ -130,10 +132,11 @@ src/
 
 ## 🔧 Available Scripts
 
-- `npm start` - Runs the development server
-- `npm build` - Builds the app for production
-- `npm test` - Launches the test runner
-- `npm eject` - Ejects from Create React App (one-way operation)
+- `npm run dev` - Runs the Vite development server
+- `npm run build` - Builds the app for production
+- `npm run preview` - Preview the production build locally
+- `npm run test` - Runs tests with Vitest
+- `npm run test:watch` - Runs tests in watch mode
 
 ### Key Features:
 - **Pagination**: Loads 10 countries per page
@@ -146,5 +149,3 @@ src/
 ## 🌐 API Information
 
 This application uses the [REST Countries API v3.1](https://restcountries.com/) to fetch country data. The API provides comprehensive information about countries including names, populations, regions, languages, and flag images.
-
-
