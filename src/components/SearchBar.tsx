@@ -5,7 +5,7 @@ type searchBarPropsType = {
 }
 
 
-function SearchBar(props: searchBarPropsType) {
+const SearchBar = (props: searchBarPropsType) => {
   return (
     <>
       <div style={{ width: "50rem" }}>

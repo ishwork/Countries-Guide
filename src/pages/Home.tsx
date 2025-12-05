@@ -12,7 +12,7 @@ import SearchBar from "../components/SearchBar";
 import { Country } from "../types";
 import { useInfiniteCountries, useAllCountries } from "../hooks/useInfiniteCountries";
 
-function Home() {
+const Home = () => {
   const styles = useStyles();
   const [search, setSearch] = useState<string>("");
 

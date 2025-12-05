@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   
 }));
 
-function FavouriteCountries() {
+const FavouriteCountries = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const styles = useStyles();

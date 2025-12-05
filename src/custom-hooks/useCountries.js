@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function useCountries() {
+const useCountries = () => {
   const [countries, setCountries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -22,3 +22,5 @@ export default function useCountries() {
   }, [url]);
   return [countries, error, loading];
 }
+
+export default useCountries;

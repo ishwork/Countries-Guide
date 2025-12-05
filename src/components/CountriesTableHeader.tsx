@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function CountriesTableHeader() {
+const CountriesTableHeader = () => {
   const styles = useStyles();
 
   return (

@@ -6,7 +6,7 @@ import Home from "./pages/Home";
 import Country from "./pages/Country";
 import FavouriteCountries from "./pages/FavouriteCountries";
 
-function App() {
+const App = () => {
   return (
     <BrowserRouter>
       <Routes>

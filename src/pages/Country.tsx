@@ -15,7 +15,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { fetchCountryAsMiddleWare } from "../redux/actions/countryAction";
 import { InititalState, AppDispatch } from "../redux/store/store";
 
-function Country() {
+const Country = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const { countryName } = useParams();
