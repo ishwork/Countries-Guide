@@ -12,7 +12,8 @@ import { addFavorite } from "../redux/actions/favouriteListAction";
 import { Country } from "../types";
 
 export type TableBodyTypes = {
-  filteredCountries: Country[]
+  filteredCountries: Country[];
+  isMobile?: boolean;
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -25,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CountriesTableBody = ({ filteredCountries}: TableBodyTypes) => {
+const CountriesTableBody = ({ filteredCountries, isMobile = false }: TableBodyTypes) => {
   const styles = useStyles();
   const dispatch = useDispatch();
 
@@ -44,14 +45,18 @@ const CountriesTableBody = ({ filteredCountries}: TableBodyTypes) => {
           >
             <TableCell component="th" scope="row" align="center">
               <img
-                height="80"
-                width="150"
+                height={isMobile ? "40" : "80"}
+                width={isMobile ? "60" : "150"}
                 src={row?.flags?.png || row?.flags?.svg}
                 alt="country flag"
+                style={{
+                  maxWidth: "100%",
+                  height: "auto",
+                }}
               />
             </TableCell>
-            <TableCell align="center">
-              <Typography>
+            <TableCell align="center" sx={{ minWidth: isMobile ? "100px" : "auto" }}>
+              <Typography sx={{ fontSize: isMobile ? "0.75rem" : "1rem" }}>
                 <Link
                   to={`/${row?.name?.common}`}
                   className={styles.countryLink}
@@ -61,12 +66,17 @@ const CountriesTableBody = ({ filteredCountries}: TableBodyTypes) => {
               </Typography>
             </TableCell>
             <TableCell align="center">
-              <Typography> {row?.population?.toLocaleString()}</Typography>
+              <Typography sx={{ fontSize: isMobile ? "0.7rem" : "1rem" }}>
+                {row?.population?.toLocaleString()}
+              </Typography>
             </TableCell>
             <TableCell align="center">
-              <Typography> {row?.region}</Typography>
+              <Typography sx={{ fontSize: isMobile ? "0.7rem" : "1rem" }}>
+                {row?.region}
+              </Typography>
             </TableCell>
 
+            {!isMobile && (
               <TableCell align="center">
                 {row?.languages && Object.keys(row?.languages).length > 0
                   ? Object.values(row?.languages).map((lang) => {
@@ -75,11 +85,18 @@ const CountriesTableBody = ({ filteredCountries}: TableBodyTypes) => {
                       );
                     })
                   : 'N/A'}
-              </TableCell> 
+              </TableCell>
+            )}
+            
             <TableCell align="center">
               <Button
                 variant="contained"
                 onClick={() => addToFavourite(row?.name?.common)}
+                sx={{
+                  fontSize: isMobile ? "0.65rem" : "0.875rem",
+                  padding: isMobile ? "4px 8px" : "6px 16px",
+                  minWidth: isMobile ? "auto" : "64px",
+                }}
               >
                 Add to favorite
               </Button>

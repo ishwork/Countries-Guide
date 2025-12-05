@@ -5,6 +5,10 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { makeStyles } from "@mui/styles";
 
+interface CountriesTableHeaderProps {
+  isMobile?: boolean;
+}
+
 const useStyles = makeStyles((theme) => ({
   styleTableHead: {
     backgroundColor: "DodgerBlue",
@@ -14,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CountriesTableHeader = () => {
+const CountriesTableHeader = ({ isMobile = false }: CountriesTableHeaderProps) => {
   const styles = useStyles();
 
   return (
@@ -32,11 +36,18 @@ const CountriesTableHeader = () => {
         <TableCell align="center">
           <Typography className={styles.headerTitle}>REGION</Typography>
         </TableCell>
+        {!isMobile && (
+          <TableCell align="center">
+            <Typography className={styles.headerTitle}>LANGUAGES</Typography>
+          </TableCell>
+        )}
         <TableCell align="center">
-          <Typography className={styles.headerTitle}>LANGUAGES</Typography>
-        </TableCell>
-        <TableCell align="center">
-          <Typography className={styles.headerTitle}>FAVORITES</Typography>
+          <Typography 
+            className={styles.headerTitle}
+            sx={{ fontSize: isMobile ? "0.7rem" : "1rem" }}
+          >
+            FAVORITES
+          </Typography>
         </TableCell>
       </TableRow>
     </TableHead>

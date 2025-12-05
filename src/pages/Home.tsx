@@ -1,18 +1,22 @@
 import React, { useState, useMemo, useCallback } from "react";
 import { Link } from "react-router";
-import { Typography, CircularProgress, Box } from "@mui/material";
+import { Typography, CircularProgress, Box, useMediaQuery, useTheme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import Button from "@mui/material/Button";
 import TableContainer from "@mui/material/TableContainer";
 import Table from "@mui/material/Table";
 
+import { Country } from "../types";
+
+import { useInfiniteCountries, useAllCountries } from "../hooks/useInfiniteCountries";
+
 import CountriesTableHeader from "../components/CountriesTableHeader";
 import CountriesTableBody from "../components/CountriesTableBody";
 import SearchBar from "../components/SearchBar";
-import { Country } from "../types";
-import { useInfiniteCountries, useAllCountries } from "../hooks/useInfiniteCountries";
 
 const Home = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const styles = useStyles();
   const [search, setSearch] = useState<string>("");
 
@@ -85,28 +89,70 @@ const Home = () => {
 
   return (
     <div>
-      <div className={styles.homePageTitle}>
-        <Typography variant="h3" color="DodgerBlue">COUNTRIES DATA</Typography>
-        <Typography variant="h4" className={styles.titleText}>
+      <Box 
+        className={styles.homePageTitle}
+        sx={{
+          marginTop: isMobile ? 2 : 6,
+          marginBottom: isMobile ? 2 : 6,
+          padding: isMobile ? "0 10px" : "0 20px",
+        }}
+      >
+        <Typography 
+          variant={isMobile ? "h4" : "h3"} 
+          color="DodgerBlue"
+        >
+          COUNTRIES DATA
+        </Typography>
+        <Typography 
+          variant={isMobile ? "h5" : "h4"} 
+          className={styles.titleText}
+        >
           Get Information About Countries
         </Typography>
-      </div>
-      <div className={styles.searchFavorite}>
-        <div className={styles.search}>
+      </Box>
+      <Box 
+        className={styles.searchFavorite}
+        sx={{
+          marginBottom: isMobile ? 4 : 12,
+          padding: isMobile ? "0 20px" : "0 50px",
+          flexDirection: isMobile ? "column" : "row",
+          justifyContent: isMobile ? "center" : "space-between",
+        }}
+      >
+        <Box className={styles.search} sx={{ width: isMobile ? "100%" : "auto" }}>
           <SearchBar onChange={SearchHandler} />
-        </div>
-        <div className={styles.favorite}>
+        </Box>
+        <Box className={styles.favorite} sx={{ width: isMobile ? "100%" : "auto" }}>
           <Link to="/country/favourites" className={styles.favoriteLink}>
-            <Button variant="outlined">See Favorite Countries</Button>
+            <Button 
+              variant="outlined"
+              fullWidth={isMobile}
+            >
+              See Favorite Countries
+            </Button>
           </Link>
-        </div>
-      </div>
-      <div>
-        <TableContainer>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            <CountriesTableHeader />
+        </Box>
+      </Box>
+      <div style={{ padding: isMobile ? "0 10px" : "0 20px" }}>
+        <TableContainer sx={{
+          overflowX: "auto",
+          maxWidth: isMobile ? "calc(100vw - 20px)" : "100%",
+        }}>
+          <Table sx={{ 
+            minWidth: isMobile ? "100%" : 650,
+            "& td, & th": {
+              padding: isMobile ? "8px 4px" : "16px",
+              fontSize: isMobile ? "0.75rem" : "1rem",
+            },
+            "& img": {
+              maxWidth: isMobile ? "60px" : "150px",
+              height: "auto",
+            },
+          }} aria-label="simple table">
+            <CountriesTableHeader isMobile={isMobile} />
             <CountriesTableBody
               filteredCountries={filteredCountries}
+              isMobile={isMobile}
             />
           </Table>
         </TableContainer>
@@ -178,23 +224,21 @@ const useStyles = makeStyles((theme) => ({
   homePageTitle: {
     width: "100%",
     textAlign: "center",
-    marginTop: 50,
-    marginBottom: 50,
   },
   titleText: {
     color: "orange",
   },
   searchFavorite: {
-    marginBottom: 100,
+    display: "flex",
+    alignItems: "center",
+    flexWrap: "wrap",
+    gap: "20px",
   },
   search: {
-    float: "left",
-    marginLeft: 50,
+    flex: 1,
+    minWidth: "200px",
   },
-  favorite: {
-    float: "right",
-    marginRight: 50,
-  },
+  favorite: {},
   favoriteLink: {
     textDecoration: "none",
   },
