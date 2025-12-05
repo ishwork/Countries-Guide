@@ -17,7 +17,7 @@
     "country-list": "^2.2.0",
     "react": "^19.2.1",
     "react-dom": "^19.2.1",
-    "react-redux": "^8.1.3",
+    "react-redux": "^9.2.0",
     "react-router": "^7.9.6",
     "redux": "^4.1.2",
     "redux-devtools-extension": "^2.13.9",
