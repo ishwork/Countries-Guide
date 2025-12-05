@@ -3,8 +3,8 @@ import {
   FETCH_COUNTRY_SUCCESS,
   FETCH_COUNTRY_ERROR,
   CountriesActions
-} from "../actions/countryAction";
-import { Country } from "../../types";
+} from "@/redux/actions/countryAction";
+import { Country } from "@/types";
 
 export type CountryInitialStateType = {
   countryData: Country[] 

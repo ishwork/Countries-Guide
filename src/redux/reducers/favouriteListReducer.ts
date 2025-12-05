@@ -1,4 +1,4 @@
-import { ADD_FAVORITE, REMOVE_FAVORITE , Actions} from "../actions/favouriteListAction";
+import { ADD_FAVORITE, REMOVE_FAVORITE , Actions} from "@/redux/actions/favouriteListAction";
 
 export type InitialState = {
   favouriteCountries: string[]

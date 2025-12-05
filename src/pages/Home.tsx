@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { Link } from "react-router";
 import { Typography, CircularProgress, Box, useMediaQuery, useTheme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
@@ -6,13 +6,13 @@ import Button from "@mui/material/Button";
 import TableContainer from "@mui/material/TableContainer";
 import Table from "@mui/material/Table";
 
-import { Country } from "../types";
+import { Country } from "@/types";
 
-import { useInfiniteCountries, useAllCountries } from "../hooks/useInfiniteCountries";
+import { useInfiniteCountries, useAllCountries } from "@/hooks/useInfiniteCountries";
 
-import CountriesTableHeader from "../components/CountriesTableHeader";
-import CountriesTableBody from "../components/CountriesTableBody";
-import SearchBar from "../components/SearchBar";
+import CountriesTableHeader from "@/components/CountriesTableHeader";
+import CountriesTableBody from "@/components/CountriesTableBody";
+import SearchBar from "@/components/SearchBar";
 
 const Home = () => {
   const theme = useTheme();
@@ -220,7 +220,7 @@ const Home = () => {
 
 export default Home;
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   homePageTitle: {
     width: "100%",
     textAlign: "center",

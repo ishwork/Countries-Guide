@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 
-import countryReducer from "./countryReducer";
-import favouriteListReducer from "./favouriteListReducer";
+import countryReducer from "@/redux/reducers/countryReducer";
+import favouriteListReducer from "@/redux/reducers/favouriteListReducer";
 
 const rootReducer = combineReducers({
   country: countryReducer,

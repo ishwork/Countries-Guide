@@ -1,4 +1,4 @@
-import React from "react";
+
 import { Typography } from "@mui/material";
 import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
@@ -9,7 +9,7 @@ type CountriesTableHeaderProps = {
   isMobile?: boolean;
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   styleTableHead: {
     backgroundColor: "DodgerBlue",
   },
