@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router";
 import Button from "@mui/material/Button";
@@ -8,15 +8,15 @@ import TableRow from "@mui/material/TableRow";
 import Typography from "@mui/material/Typography";
 import { makeStyles } from "@mui/styles";
 
-import { addFavorite } from "../redux/actions/favouriteListAction";
-import { Country } from "../types";
+import { addFavorite } from "@/redux/actions/favouriteListAction";
+import { Country } from "@/types";
 
 export type TableBodyTypes = {
   filteredCountries: Country[];
   isMobile?: boolean;
 };
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   countryLink: {
     textDecoration: "none",
     color: "DodgerBlue",

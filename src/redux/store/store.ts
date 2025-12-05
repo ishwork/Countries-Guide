@@ -2,12 +2,12 @@ import { createStore, applyMiddleware } from "redux";
 import thunk, { ThunkDispatch } from "redux-thunk";
 import { AnyAction } from "redux";
 
-import { Country } from "../../types";
+import { Country } from "@/types";
 
 //for integrating with Chrome's devtool extension to see the Redux states
 import { composeWithDevTools } from "redux-devtools-extension";
 
-import rootReducer from "../reducers/rootReducer";
+import rootReducer from "@/redux/reducers/rootReducer";
 
 export type InititalState = {
   favCountries: {

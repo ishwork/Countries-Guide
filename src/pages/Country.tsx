@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router";
 import Accordion from "@mui/material/Accordion";
@@ -12,8 +12,8 @@ import CircularProgress from '@mui/material/CircularProgress';
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Typography from "@mui/material/Typography";
 
-import { fetchCountryAsMiddleWare } from "../redux/actions/countryAction";
-import { AppDispatch, InititalState } from "../redux/store/store";
+import { fetchCountryAsMiddleWare } from "@/redux/actions/countryAction";
+import { AppDispatch, InititalState } from "@/redux/store/store";
 
 const Country = () => {
   const dispatch = useDispatch<AppDispatch>();

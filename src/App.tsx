@@ -1,10 +1,9 @@
-import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router";
 
 import "./App.css";
-import Home from "./pages/Home";
-import Country from "./pages/Country";
-import FavouriteCountries from "./pages/FavouriteCountries";
+import Home from "@/pages/Home";
+import Country from "@/pages/Country";
+import FavouriteCountries from "@/pages/FavouriteCountries";
 
 const App = () => {
   return (

@@ -1,6 +1,6 @@
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 
-import { Country } from "../types";
+import { Country } from "@/types";
 
 const COUNTRIES_PER_PAGE = 10;
 
