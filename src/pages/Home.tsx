@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import { Link } from "react-router";
 import { Typography, CircularProgress, Box } from "@mui/material";
 import { makeStyles } from "@mui/styles";
@@ -33,6 +33,7 @@ function Home() {
     error: allCountriesError,
   } = useAllCountries();
 
+  // Memoize filtered countries to avoid recalculation on every render
   const filteredCountries = useMemo(() => {
     if (search === "") {
       // No search - show paginated results
@@ -47,6 +48,21 @@ function Home() {
       return [];
     }
   }, [data, allCountriesData, search]);
+
+  // Memoize search handler to prevent recreation on every render
+  const SearchHandler = useCallback((event: any) => {
+    setSearch(event.target.value);
+  }, []);
+
+  // Memoize load more handler
+  const handleLoadMore = useCallback(() => {
+    fetchNextPage();
+  }, [fetchNextPage]);
+
+  // Memoize total count
+  const totalCount = useMemo(() => {
+    return data?.pages[0]?.totalCount || 0;
+  }, [data?.pages]);
 
   if (status === 'pending') {
     return (
@@ -66,10 +82,6 @@ function Home() {
       </Box>
     );
   }
-
-  const SearchHandler = (event: any) => {
-    setSearch(event.target.value);
-  };
 
   return (
     <div>
@@ -104,7 +116,7 @@ function Home() {
           <Box display="flex" justifyContent="center" mt={4} mb={2}>
             <Button 
               variant="contained" 
-              onClick={() => fetchNextPage()}
+              onClick={handleLoadMore}
               disabled={isFetchingNextPage}
               size="large"
               color="primary"
@@ -135,7 +147,7 @@ function Home() {
               // Not searching - show pagination info
               <>
                 Showing {filteredCountries.length} countries
-                {data?.pages[0]?.totalCount && ` of ${data.pages[0].totalCount}`}
+                {totalCount > 0 && ` of ${totalCount}`}
               </>
             ) : (
               // Searching - show search results

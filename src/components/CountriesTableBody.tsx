@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router";
 import Button from "@mui/material/Button";
@@ -15,15 +15,25 @@ export type TableBodyTypes = {
   filteredCountries: Country[]
 };
 
-function CountriesTableBody({ filteredCountries}: TableBodyTypes) {
+const useStyles = makeStyles((theme) => ({
+  countryLink: {
+    textDecoration: "none",
+    color: "DodgerBlue",
+    "&:hover": {
+      color: "red",
+    },
+  },
+}));
+
+const CountriesTableBody = ({ filteredCountries}: TableBodyTypes) => {
   const styles = useStyles();
   const dispatch = useDispatch();
 
-  const addToFavourite = (countryName: string) => {
+  const addToFavourite = useCallback((countryName: string) => {
     dispatch(addFavorite(countryName));
-  };
+  }, [dispatch]);
 
-  console.log(filteredCountries);
+  // console.log(filteredCountries);
   return (
     <>
       <TableBody>
@@ -79,16 +89,6 @@ function CountriesTableBody({ filteredCountries}: TableBodyTypes) {
       </TableBody>
     </>
   );
-}
-
-const useStyles = makeStyles((theme) => ({
-  countryLink: {
-    textDecoration: "none",
-    color: "DodgerBlue",
-    "&:hover": {
-      color: "red",
-    },
-  },
-}));
+};
 
 export default CountriesTableBody;

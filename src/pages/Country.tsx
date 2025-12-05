@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo, useCallback } from "react";
 import { useNavigate, useParams } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { Button, Card } from "@mui/material";
@@ -23,9 +23,32 @@ function Country() {
   const country = useSelector((state: InititalState) => state.country.countryData);
   const error = useSelector((state: InititalState) => state.country.error);
 
+  // Memoize country name to prevent unnecessary effect triggers
+  const memoizedCountryName = useMemo(() => countryName || null, [countryName]);
+
   useEffect(() => {
-    dispatch(fetchCountryAsMiddleWare(countryName || null));
-  }, [dispatch, countryName]);
+    dispatch(fetchCountryAsMiddleWare(memoizedCountryName));
+  }, [dispatch, memoizedCountryName]);
+
+  // Memoize derived values
+  const countryData = useMemo(() => country?.[0], [country]);
+  
+  const languages = useMemo(() => {
+    if (!countryData?.languages) return null;
+    return Object.values(countryData.languages).map((language) => (
+      <p key={language}>{language}</p>
+    ));
+  }, [countryData?.languages]);
+
+  const borders = useMemo(() => {
+    if (!countryData?.borders) return "no border found";
+    return countryData.borders.map((border) => <p key={border}>{border}</p>);
+  }, [countryData?.borders]);
+
+  // Memoize navigation handler
+  const handleBack = useCallback(() => {
+    navigate("/");
+  }, [navigate]);
 
   if (error) {
     return <p>Something went wrong</p>;
@@ -33,7 +56,7 @@ function Country() {
 
   return (
     <>
-      {country ? (
+      {countryData ? (
         <div
           style={{
             display: "flex",
@@ -44,13 +67,13 @@ function Country() {
         >
           <Card sx={{ maxWidth: 400 }}>
             <CardHeader
-              title={country[0]?.name.common}
+              title={countryData.name.common}
               style={{ textAlign: "center" }}
             />
             <CardMedia
               component="img"
               height="194"
-              image={country[0]?.flags?.png || country[0]?.flags?.svg}
+              image={countryData.flags?.png || countryData.flags?.svg}
               alt="Country flag"
             /> 
             <Accordion>
@@ -62,7 +85,7 @@ function Country() {
                 <Typography>Other Names</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography>{country[0]?.name?.official}</Typography>
+                <Typography>{countryData.name?.official}</Typography>
               </AccordionDetails>
             </Accordion>
             <Accordion>
@@ -74,7 +97,7 @@ function Country() {
                 <Typography>Capital</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography>{country[0]?.capital}</Typography>
+                <Typography>{countryData.capital}</Typography>
               </AccordionDetails>
             </Accordion> 
             <Accordion>
@@ -86,7 +109,7 @@ function Country() {
                 <Typography>Region</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography>{country[0]?.region}</Typography>
+                <Typography>{countryData.region}</Typography>
               </AccordionDetails>
             </Accordion>
             <Accordion>
@@ -98,13 +121,7 @@ function Country() {
                 <Typography>Borders</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography>
-                  {country[0]?.borders
-                    ? country[0]?.borders.map((border) => {
-                        return <p key={border}>{border}</p>;
-                      })
-                    : "no border found"}
-                </Typography>
+                <Typography>{borders}</Typography>
               </AccordionDetails>
             </Accordion>
             <Accordion>
@@ -117,20 +134,14 @@ function Country() {
               </AccordionSummary>
               <AccordionDetails>
                 <Typography>
-                  {country[0]?.languages
-                    ? Object.values(country[0]?.languages).map((language) => {
-                        return <p key={language}>{language}</p>;
-                      })
-                    : "no languages found"}
+                  {languages || "no languages found"}
                 </Typography>
               </AccordionDetails>
             </Accordion>
             <CardActions sx={{ justifyContent: "center" }}>
               <Button
                 size="small"
-                onClick={() => {
-                  navigate("/");
-                }}
+                onClick={handleBack}
               >
                 BACK
               </Button>
