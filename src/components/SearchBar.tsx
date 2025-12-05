@@ -4,7 +4,6 @@ type searchBarPropsType = {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-
 const SearchBar = (props: searchBarPropsType) => {
   return (
     <>

@@ -1,19 +1,19 @@
-import React, { useEffect, useMemo, useCallback } from "react";
+import React, { useCallback, useEffect, useMemo } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router";
-import { useSelector, useDispatch } from "react-redux";
+import Accordion from "@mui/material/Accordion";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import AccordionSummary from "@mui/material/AccordionSummary";
 import { Button, Card } from "@mui/material";
-import CircularProgress from '@mui/material/CircularProgress';
+import CardActions from "@mui/material/CardActions";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
-import CardActions from "@mui/material/CardActions";
-import Typography from "@mui/material/Typography";
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
+import CircularProgress from '@mui/material/CircularProgress';
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Typography from "@mui/material/Typography";
 
 import { fetchCountryAsMiddleWare } from "../redux/actions/countryAction";
-import { InititalState, AppDispatch } from "../redux/store/store";
+import { AppDispatch, InititalState } from "../redux/store/store";
 
 const Country = () => {
   const dispatch = useDispatch<AppDispatch>();

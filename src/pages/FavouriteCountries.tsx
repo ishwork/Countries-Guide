@@ -1,14 +1,13 @@
 import React from "react";
-import Button from "@mui/material/Button";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { Card, Typography } from "@mui/material";
-import { useDispatch } from "react-redux";
-import { makeStyles } from "@mui/styles";
+import Button from "@mui/material/Button";
 import DeleteIcon from '@mui/icons-material/Delete';
+import { Card, Typography } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 
+import { InititalState } from "../redux/store/store"
 import { removeFavorite } from "../redux/actions/favouriteListAction";
-import {InititalState} from "../redux/store/store"
 
 const useStyles = makeStyles((theme) => ({
   parentDiv: {
