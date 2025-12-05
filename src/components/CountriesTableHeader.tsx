@@ -5,7 +5,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { makeStyles } from "@mui/styles";
 
-interface CountriesTableHeaderProps {
+type CountriesTableHeaderProps = {
   isMobile?: boolean;
 }
 
